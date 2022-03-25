@@ -1,14 +1,16 @@
 // SCORE: 100% correctness, 100% performance
 function solution(A) {
-  const occurenceFlags = []
+  const occurrenceFlag = []
 
   for (let i = 0; i < A.length; i++) {
-    occurenceFlags[A[i]] = 1
+    occurrenceFlag[A[i]] = 1
   }
 
-  for (let i = 1; i < A.length + 2; i++) {
-    if (occurenceFlags[i] === undefined) {
+  for (let i = 1; i <= A.length; i++) {
+    if (occurrenceFlag[i] !== 1) {
       return i
     }
   }
+
+  return A.length + 1
 }
