@@ -1,0 +1,20 @@
+{
+  "name": "practicing-algorithms",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajobi/practicing-algorithms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajobi/practicing-algorithms/issues"
+  },
+  "homepage": "https://github.com/ajobi/practicing-algorithms#readme"
+}
