@@ -6,13 +6,13 @@ function solution(A) {
     sums[i] = sums[i - 1] + A[i]
   }
 
-  let minDiff = Number.MAX_SAFE_INTEGER
+  let result = Number.MAX_SAFE_INTEGER
   for (let i = 1; i < sums.length; i++) {
     const sumLeft = sums[i - 1]
     const sumRight = sums[sums.length - 1] - sumLeft
     const diff = Math.abs(sumLeft - sumRight)
-    minDiff = diff < minDiff ? diff : minDiff
+    result = Math.min(result, diff)
   }
 
-  return minDiff
+  return result
 }
