@@ -1,18 +1,18 @@
 // SCORE: 100% correctness, 100% performance
 function solution(A) {
-  const counterArray = []
+  const occurrences = []
 
-  for (let number of A) {
-    if (number > 0) {
-      counterArray[number] = counterArray[number] ? counterArray[number] + 1 : 1
+  for (let i = 0; i < A.length; i++) {
+    if (A[i] > 0) {
+      occurrences[A[i]] = 1
     }
   }
 
-  for (let resultIndex = 1; resultIndex <= 100000; resultIndex++) {
-    if (counterArray[resultIndex] === undefined) {
-      return resultIndex
+  for (let i = 1; i < occurrences.length; i++) {
+    if (occurrences[i] === undefined) {
+      return i
     }
   }
 
-  return 100001
+  return occurrences.length === 0 ? 1 : occurrences.length
 }
