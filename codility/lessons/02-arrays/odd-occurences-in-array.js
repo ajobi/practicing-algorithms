@@ -1,20 +1,14 @@
 // SCORE: 100% correctness, 100% performance
 function solution(A) {
-  const indices = new Set()
-  const occurences = []
+  const occurrences = {}
+
+  A.forEach(number => {
+    occurrences[number] = occurrences[number] === undefined ? 1 : occurrences[number] + 1
+  })
 
   for (let i = 0; i < A.length; i++) {
-    const value = A[i]
-
-    occurences[value] = occurences[value] === undefined ? 1 : occurences[value] + 1
-    indices.add(value)
-  }
-
-  for (let index of indices) {
-    if (occurences[index] % 2 === 1) {
-      return index
+    if (occurrences[A[i]] % 2 === 1) {
+      return A[i]
     }
   }
-
-  return -1
 }
