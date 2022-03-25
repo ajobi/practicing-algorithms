@@ -1,23 +1,10 @@
 // SCORE: 100% correctness, performance not assessed for this lesson
-function rotateOnce(A) {
+function solution(A, K) {
   const result = []
 
-  if (A.length > 0) {
-    result[0] = A[A.length - 1]
-
-    for (let i = 0; i < A.length - 1; i++) {
-      result[i + 1] = A[i]
-    }
-  }
-
-  return result
-}
-
-function solution(A, K) {
-  let result = A
-
-  for (let i = 0; i < K; i++) {
-    result = rotateOnce(result)
+  for (let i = 0; i < A.length; i++) {
+    const newIndex = i + K < A.length ? i + K : (K + i) % A.length
+    result[newIndex] = A[i]
   }
 
   return result
