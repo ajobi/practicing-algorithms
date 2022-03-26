@@ -1,14 +1,14 @@
 // SCORE: 100% correctness, 100% performance
 function solution(A) {
-  let distinctCounter = 0
-  let countArray = []
+  A.sort()
 
-  for (let num of A) {
-    if (countArray[num] === undefined) {
-      countArray[num] = 1
-      distinctCounter++
+  let result = A.length === 0 ? 0 : 1
+
+  for (let i = 1; i < A.length; i++) {
+    if (A[i] !== A[i - 1]) {
+      result++
     }
   }
 
-  return distinctCounter
+  return result
 }
