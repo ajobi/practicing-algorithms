@@ -1,19 +1,18 @@
 // SCORE: 100% correctness, 100% performance
 function solution(A) {
-  let passing = 0;
-  let eastCount = 0;
+  let result = 0;
+
+  const countWest = []
+
+  for (let i = 0; i < A.length; i++) {
+    countWest[i] = A[i] === 1 ? (countWest[i - 1] || 0) + 1 : (countWest[i - 1] || 0)
+  }
 
   for (let i = 0; i < A.length; i++) {
     if (A[i] === 0) {
-      eastCount++
-    } else {
-      passing = passing + eastCount
-    }
-
-    if (passing > 1000000000) {
-      return -1
+      result = result + (countWest[countWest.length - 1] - countWest[i])
     }
   }
 
-  return passing
+  return result > 1000000000 ? -1 : result
 }
