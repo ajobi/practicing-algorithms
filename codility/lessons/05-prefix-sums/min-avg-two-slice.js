@@ -1,20 +1,23 @@
 // SCORE: 100% correctness, 100% performance
 function solution(A) {
-  let minAverage = Number.MAX_SAFE_INTEGER
-  let minPosition = Number.MAX_SAFE_INTEGER
+  let minSliceAverage = Number.MAX_SAFE_INTEGER
+  let minPosition = A.length - 1
 
   for (let i = 0; i < A.length - 1; i++) {
-    const twoSliceAvg = (A[i] + A[i + 1]) / 2
-    const threeSliceAvg = A[i + 2] ? (A[i] + A[i + 1] + A[i + 2]) / 3 : Number.MAX_SAFE_INTEGER
+    const sliceAvg = (A[i] + A[i + 1]) / 2
 
-    if (twoSliceAvg < minAverage) {
-      minAverage = twoSliceAvg
+    if (sliceAvg < minSliceAverage) {
       minPosition = i
+      minSliceAverage = sliceAvg
     }
+  }
 
-    if (threeSliceAvg < minAverage) {
-      minAverage = threeSliceAvg
+  for (let i = 0; i < A.length - 2; i++) {
+    const sliceAvg = (A[i] + A[i + 1] + A[i + 2]) / 3
+
+    if (sliceAvg < minSliceAverage) {
       minPosition = i
+      minSliceAverage = sliceAvg
     }
   }
 
