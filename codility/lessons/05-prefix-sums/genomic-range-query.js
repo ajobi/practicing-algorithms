@@ -1,39 +1,40 @@
 // SCORE: 100% correctness, 100% performance
 function solution(S, P, Q) {
-  const sumA = [0]
-  const sumC = [0]
-  const sumG = [0]
+  const factors = { A: 1, C: 2, G: 3, T: 4, }
+
+  const sumA = []
+  const sumC = []
+  const sumG = []
 
   for (let i = 0; i < S.length; i++) {
-    sumA[i + 1] = S[i] === 'A' ? sumA[i] + 1 : sumA[i]
-    sumC[i + 1] = S[i] === 'C' ? sumC[i] + 1 : sumC[i]
-    sumG[i + 1] = S[i] === 'G' ? sumG[i] + 1 : sumG[i]
+    sumA[i] = S[i] === 'A' ? (sumA[i - 1] || 0) + 1 : (sumA[i - 1] || 0)
+    sumC[i] = S[i] === 'C' ? (sumC[i - 1] || 0) + 1 : (sumC[i - 1] || 0)
+    sumG[i] = S[i] === 'G' ? (sumG[i - 1] || 0) + 1 : (sumG[i - 1] || 0)
   }
 
   const result = []
-  const factorMap = {
-    A: 1,
-    C: 2,
-    G: 3,
-    T: 4
-  }
 
   for (let i = 0; i < P.length; i++) {
-    const start = P[i]
-    const end = Q[i] + 1
+    const start = P[i] - 1
+    const end = Q[i]
 
-    if (start === end) {
-      result[i] = factorMap[S[start]]
-    } else if (sumA[end] > sumA[start]) {
-      result[i] = factorMap.A
-    } else if (sumC[end] - sumC[start]) {
-      result[i] = factorMap.C
-    } else if (sumG[end] - sumG[start]) {
-      result[i] = factorMap.G
-    } else {
-      result[i] = factorMap.T
+    if (sumA[end] > (sumA[start] || 0)) {
+      result[i] = factors.A
+      continue
     }
+
+    if (sumC[end] > (sumC[start] || 0)) {
+      result[i] = factors.C
+      continue
+    }
+
+    if (sumG[end] > (sumG[start] || 0)) {
+      result[i] = factors.G
+      continue
+    }
+
+    result[i] = factors.T
   }
 
-  return result;
+  return result
 }
