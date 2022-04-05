@@ -1,33 +1,26 @@
 // SCORE: 100% correctness, 100% performance
 function solution(S) {
-  if (S.length === 0) {
-    return 1
-  }
-
   const stack = []
-  const bracketMap = {
+
+  const bracketsMap = {
     ')': '(',
+    '}': '{',
     ']': '[',
-    '}': '{'
   }
 
-  for (let char of S) {
-    if (['(', '[', '{'].includes(char)) {
-      stack.push(char)
-      continue;
+  for (let i = 0; i < S.length; i++) {
+    if (['(', '{', '['].includes(S[i])) {
+      stack.push(S[i])
+      continue
     }
 
-    if (stack[stack.length - 1] === bracketMap[char]) {
+    if (stack[stack.length - 1] === bracketsMap[S[i]]) {
       stack.pop()
-      continue;
+      continue
     }
 
     return 0
   }
 
-  if (stack.length > 0) {
-    return 0
-  }
-
-  return 1
+  return stack.length > 0 ? 0 : 1
 }
