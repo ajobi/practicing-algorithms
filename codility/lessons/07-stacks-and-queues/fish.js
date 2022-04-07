@@ -1,28 +1,22 @@
 // SCORE: 100% correctness, 100% performance
 function solution(A, B) {
-  const stack = []
+  const downstream = []
+  const upstream = []
 
   for (let i = 0; i < A.length; i++) {
     if (B[i] === 1) {
-      stack.push(i)
-    } else {
-      while (true) {
-        let prev = stack[stack.length - 1]
-        if (prev === undefined || B[prev] === 0) {
-          stack.push(i)
-          break
-        }
+      downstream.push(A[i])
+      continue;
+    }
 
-        if (B[prev] === 1 && A[prev] < A[i]) {
-          stack.pop()
-        }
+    while(downstream.length > 0 && downstream[downstream.length - 1] < A[i]) {
+      downstream.pop()
+    }
 
-        if (B[prev] === 1 && A[prev] >= A[i]) {
-          break
-        }
-      }
+    if (downstream.length === 0) {
+      upstream.push(A[i])
     }
   }
 
-  return stack.length
+  return downstream.length + upstream.length
 }
