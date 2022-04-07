@@ -2,27 +2,18 @@
 function solution(S) {
   const stack = []
 
-  if (S.length === 0) {
-    return 1
-  }
-
-  for (let char of S) {
-    if (char === '(') {
-      stack.push(char)
+  for (let i = 0; i < S.length; i++) {
+    if (S[i] === '(') {
+      stack.push('(')
       continue
     }
 
-    if (char === ')' && stack[stack.length - 1] === '(') {
+    if (stack.length === 0) {
+      return 0
+    } else {
       stack.pop()
-      continue
     }
-
-    return 0
   }
 
-  if (stack.length > 0) {
-    return 0
-  }
-
-  return 1
+  return stack.length === 0 ? 1 : 0
 }
