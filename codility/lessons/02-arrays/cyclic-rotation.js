@@ -3,8 +3,7 @@ function solution(A, K) {
   const result = []
 
   for (let i = 0; i < A.length; i++) {
-    const newIndex = i + K < A.length ? i + K : (K + i) % A.length
-    result[newIndex] = A[i]
+    result[(i + K) % A.length] = A[i]
   }
 
   return result
